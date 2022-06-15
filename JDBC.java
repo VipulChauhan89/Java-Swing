@@ -7,7 +7,7 @@ import java.awt.event.*;
 public class JDBC extends JFrame implements ActionListener
 {
 	Connection con=null;
-	PreparedStatement ps1=null,ps2=null;
+	PreparedStatement ps1=null,ps2=null,ps3=null,ps4=null;
 	JTextField tf1,tf2;
 	JDBC()
 	{
@@ -16,9 +16,11 @@ public class JDBC extends JFrame implements ActionListener
 		tf2=new JTextField(20);
 		JLabel l1=new JLabel("ID");
 		JLabel l2=new JLabel("NAME");
-		JButton b1=new JButton("Submit");
+		JButton b1=new JButton("Insert");
 		JButton b2=new JButton("Show Table");
-		JButton b3=new JButton("Exit");
+		JButton b3=new JButton("Update");
+		JButton b4=new JButton("Delete");
+		JButton b5=new JButton("Exit");
 		setLayout(new FlowLayout());
 		add(l1);
 		add(tf1);
@@ -27,13 +29,17 @@ public class JDBC extends JFrame implements ActionListener
 		add(b1);
 		add(b2);
 		add(b3);
+		add(b4);
+		add(b5);
 		b1.addActionListener(this);
 		b2.addActionListener(this);
 		b3.addActionListener(this);
+		b4.addActionListener(this);
+		b5.addActionListener(this);
 	}
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getActionCommand()=="Submit")
+		if(e.getActionCommand()=="Insert")
 		{
 			System.out.println("Submit");
 			submit();
@@ -42,6 +48,16 @@ public class JDBC extends JFrame implements ActionListener
 		{
 			System.out.println("Display");
 			display();
+		}
+		else if(e.getActionCommand()=="Update")
+		{
+			System.out.println("Update");
+			update();
+		}
+		else if(e.getActionCommand()=="Delete")
+		{
+			System.out.println("Delete");
+			delete();
 		}
 		else
 		{
@@ -90,6 +106,30 @@ public class JDBC extends JFrame implements ActionListener
 			n.setVisible(true);
 			n.setLayout(new FlowLayout());
 			n.add(scroll);
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+	public void update()
+	{
+		try
+		{
+			ps3=con.prepareStatement("update emp set name='"+tf2.getText()+"' where id='"+Integer.parseInt(tf1.getText())+"'");
+			ps3.executeUpdate();
+		}
+		catch(Exception e)
+		{
+			System.out.println(e);
+		}
+	}
+	public void delete()
+	{
+		try
+		{
+			ps4=con.prepareStatement("delete from emp where id='"+Integer.parseInt(tf1.getText())+"'");
+			ps4.executeUpdate();
 		}
 		catch(Exception e)
 		{
