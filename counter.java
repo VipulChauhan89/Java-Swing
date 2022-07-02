@@ -1,0 +1,48 @@
+import javax.swing.*;
+import java.awt.event.*;
+import java.awt.*;
+public class counter extends JFrame implements ActionListener
+{
+    JTextField tf;
+    counter()
+    {
+        super("Counter");
+        JLabel lb=new JLabel("Counter");
+        tf=new JTextField(20);
+        JButton b=new JButton("Count");
+        JButton b1=new JButton("Reset");
+        setLayout(new FlowLayout());
+        add(lb);
+        add(tf);
+        add(b);
+        add(b1);
+        b.addActionListener(this);
+        b1.addActionListener(this);
+        tf.setText("0");
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        if(e.getActionCommand()=="Count")
+        {
+            int i=Integer.parseInt(tf.getText());
+            tf.setText(Integer.toString(i+1));
+        }
+        else if(e.getActionCommand()=="Reset")
+        {
+            tf.setText("0");
+        }
+    }
+    public static void main(String args[])
+    {
+        counter c=new counter();
+        c.setSize(300,200);
+        c.setVisible(true);
+        c.addWindowListener(new WindowAdapter()
+            {
+                public void windowClosing(WindowEvent e)
+                {
+                    System.exit(0);
+                }
+        });
+    }
+}
