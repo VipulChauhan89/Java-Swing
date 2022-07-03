@@ -9,23 +9,31 @@ public class counter extends JFrame implements ActionListener
         super("Counter");
         JLabel lb=new JLabel("Counter");
         tf=new JTextField(20);
-        JButton b=new JButton("Count");
-        JButton b1=new JButton("Reset");
+        JButton b=new JButton("Down count");
+        JButton b1=new JButton("Up count");
+        JButton b2=new JButton("Reset");
         setLayout(new FlowLayout());
         add(lb);
         add(tf);
         add(b);
         add(b1);
+        add(b2);
         b.addActionListener(this);
         b1.addActionListener(this);
+        b2.addActionListener(this);
         tf.setText("0");
     }
     public void actionPerformed(ActionEvent e)
     {
-        if(e.getActionCommand()=="Count")
+        if(e.getActionCommand()=="Up count")
         {
             int i=Integer.parseInt(tf.getText());
             tf.setText(Integer.toString(i+1));
+        }
+        else if(e.getActionCommand()=="Down count")
+        {
+            int i=Integer.parseInt(tf.getText());
+            tf.setText(Integer.toString(i-1));
         }
         else if(e.getActionCommand()=="Reset")
         {
