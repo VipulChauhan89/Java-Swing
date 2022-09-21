@@ -1,7 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
-class Smiley extends Canvas
+public class Smiley extends Canvas
 {
 	public void paint(Graphics g)
 	{
@@ -17,7 +17,7 @@ class Smiley extends Canvas
 	}
 	public static void main(String args[])
 	{
-		B d=new B();
+		Smiley d=new Smiley();
 		JFrame f=new JFrame();
 		f.setSize(500,500);
 		f.setVisible(true);
